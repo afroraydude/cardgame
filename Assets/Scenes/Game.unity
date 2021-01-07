@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSet: ffffffffffffffffffffffffffffffffffffffff
-  gameManager: {fileID: 2418090179012859005, guid: 5d1ec01c7c0c7184e98bd53a11d1239c, type: 3}
+  gameManager: {fileID: 0}
   energyPoints: 7
 --- !u!4 &484739570
 Transform:
@@ -3629,7 +3629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1022606468622584249, guid: 5d1ec01c7c0c7184e98bd53a11d1239c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5896287430683689913, guid: 5d1ec01c7c0c7184e98bd53a11d1239c, type: 3}
       propertyPath: m_RootOrder

@@ -15,6 +15,7 @@ namespace CardGame.Management
 
         private void Awake()
         {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             _websocket = GetComponent<WebsocketBehavior>();
             if (!gameManager)
             {

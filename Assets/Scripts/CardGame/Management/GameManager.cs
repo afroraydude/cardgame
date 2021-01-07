@@ -6,6 +6,7 @@ using CardGame.Data;
 using CardGameShared.Data;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Avatar = CardGameShared.Data.Avatar;
 using Random = System.Random;
 
@@ -18,6 +19,12 @@ namespace CardGame.Management
         public SaveFile playerinfo;
         private void Awake()
         {
+            /*
+            if (GameObject.Find("GameManager") != null && GameObject.Find("GameManager") != gameObject)
+            {
+                gameObject.SetActive(false);
+            }
+            */
             List<RuntimePlatform> rp = new List<RuntimePlatform>
                 {RuntimePlatform.LinuxPlayer, RuntimePlatform.WindowsPlayer, RuntimePlatform.OSXPlayer};
             if (rp.Contains(Application.platform))
@@ -42,7 +49,7 @@ namespace CardGame.Management
         static string RandomString (int length)
         {
             Random random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiopasdfghjklzxcvbnm";
             
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
