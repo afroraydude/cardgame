@@ -198,6 +198,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8419843}
   m_CullTransparentMesh: 1
+--- !u!1 &323624086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323624088}
+  - component: {fileID: 323624087}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &323624087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323624086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c8bf411ec54094a6e8fa1ccae09f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  websocketDir: 
+--- !u!4 &323624088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323624086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 330.42136, y: 801.6991, z: -11811.562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &350177982
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSet: ffffffffffffffffffffffffffffffffffffffff
+  gameManager: {fileID: 0}
   energyPoints: 7
 --- !u!4 &484739570
 Transform:
@@ -2089,13 +2134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03a065c390c4515b0de9fb321c74ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  energyPoints: {fileID: 0}
   playManager: {fileID: 484739569}
+  energyBarSlider: {fileID: 1832589772}
   actions:
   - {fileID: 711037626}
   - {fileID: 1016972517}
@@ -2107,7 +2148,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d7c525055fd7724d842c2a612e47d84, type: 3}
   - {fileID: 21300000, guid: 6a63ea40ec9042049ba09539d3d4de04, type: 3}
   - {fileID: 21300000, guid: e551f50da927edf44a214a5ca8404a09, type: 3}
-  energyBarSlider: {fileID: 1832589772}
 --- !u!114 &1560086152
 MonoBehaviour:
   m_ObjectHideFlags: 0

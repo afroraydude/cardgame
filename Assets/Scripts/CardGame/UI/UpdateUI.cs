@@ -10,12 +10,11 @@ namespace CardGame.UI
     public class UpdateUI : MonoBehaviour
     {
         [SerializeField] private Text energyPoints;
-        [SerializeField] private Text[] actionTexts;
         [SerializeField] public PlayManager playManager;
 
         [SerializeField] public Slider energyBarSlider;
-        //[SerializeField] public Button[] actions;
-        //[SerializeField] public Sprite[] actionImages;
+        [SerializeField] public Button[] actions;
+        [SerializeField] public Sprite[] actionImages;
 
         private void Start()
         {
@@ -31,16 +30,16 @@ namespace CardGame.UI
                 switch (actionType)
                 {
                     case ActionType.HeavySwordH:
-                        actionTexts[i].text = "Heavy";
+                        actions[i].image.sprite = actionImages[0];
                         break;
                     case ActionType.Shield:
-                        actionTexts[i].text = "Shield";
+                        actions[i].image.sprite = actionImages[1];
                         break;
                     case ActionType.Sword:
-                        actionTexts[i].text = "Sword";
+                        actions[i].image.sprite = actionImages[2];
                         break;
                     case ActionType.HeavySwordS:
-                        actionTexts[i].text = "Sword";
+                        actions[i].image.sprite = actionImages[3];
                         break;
                 }
 
@@ -50,8 +49,8 @@ namespace CardGame.UI
                 }
             }
 
-            energyPoints.text = playManager.energyPoints.ToString();
-            //energyBarSlider.value = playManager.energyPoints;
+            //energyPoints.text = playManager.energyPoints.ToString();
+            energyBarSlider.value = playManager.energyPoints;
         }
     }
 }

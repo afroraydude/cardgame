@@ -47,10 +47,13 @@ namespace CardGame.Networking
 
         private void OnMessage(object sender, MessageEventArgs e)
         {
-            ProperMessage message = LoadMessage(e.Data);
-            if (message.messageType == MessageType.RoundResult)
+            if (_dir != "lobby")
             {
-                _playManager.ProcessRoundPlayed(JsonConvert.DeserializeObject<GameRound>(message.messageData));
+                ProperMessage message = LoadMessage(e.Data);
+                if (message.messageType == MessageType.RoundResult)
+                {
+                    _playManager.ProcessRoundPlayed(JsonConvert.DeserializeObject<GameRound>(message.messageData));
+                }
             }
         }
         private void OnOpen(object sender, EventArgs e)

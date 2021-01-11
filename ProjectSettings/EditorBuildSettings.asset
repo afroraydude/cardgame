@@ -6,12 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 47e2a9cb217112947a39a10244dc5e40
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 47cfefa1ba7828547a5af27d4cf97d15
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: f0170d9ef96b50c4b8dca16914283d93
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: d60899f397f679d4ab9f96139db0b2c0
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 47e2a9cb217112947a39a10244dc5e40
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 9f30282d8448e3c419f4e7aa5225a6b3
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: de149568586cafe4cb9cebf03e3a261d
+  - enabled: 1
+    path: Assets/Scenes/Enter Username.unity
+    guid: e1159c4d4df2af94e9af3a4c4188bab1
+  - enabled: 1
+    path: Assets/Scenes/EnterIDJoin.unity
+    guid: 196335b4c51b7694ba4c62b971027fa9
+  - enabled: 1
+    path: Assets/Scenes/PlayMenu.unity
+    guid: ff8682d5e8587f84398a050de95f3a46
+  - enabled: 1
+    path: Assets/Scenes/versusdisplay.unity
+    guid: 66de7f1c1463e70478e7cf3ccabfc003
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a39c9b8088346fb42a7c4199a48008f9
   m_configObjects: {}

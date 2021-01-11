@@ -25,6 +25,8 @@ namespace CardGame.Management
                 gameObject.SetActive(false);
             }
             */
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
             List<RuntimePlatform> rp = new List<RuntimePlatform>
                 {RuntimePlatform.LinuxPlayer, RuntimePlatform.WindowsPlayer, RuntimePlatform.OSXPlayer};
             if (rp.Contains(Application.platform))
@@ -79,6 +81,11 @@ namespace CardGame.Management
             SaveFile output = JsonConvert.DeserializeObject<SaveFile>(data);
             return output;
         }
-
+        
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            Debug.Log(mode);
+        }
     }
 }
