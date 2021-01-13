@@ -59,6 +59,11 @@ namespace CardGame.Networking
                 {
                     _playManager.ProcessRoundPlayed(JsonConvert.DeserializeObject<GameRound>(message.messageData));
                 }
+
+                if (message.messageType == MessageType.JoinAccept)
+                {
+                    _playManager.me = JsonConvert.DeserializeObject<Player>(message.messageData);
+                }
             }
         }
         private void OnOpen(object sender, EventArgs e)
@@ -69,18 +74,7 @@ namespace CardGame.Networking
             }
             else
             {
-                // is game
-                Player me = new Player
-                {
-                    actions = new[]
-                    {
-                        ActionType.NullAction, ActionType.NullAction, ActionType.NullAction,
-                        ActionType.NullAction, ActionType.NullAction
-                    },
-                    lockedIn = false,
-                    avatar = _playManager.gameManager.playerinfo.avatar,
-                    name = _playManager.gameManager.playerinfo.name
-                };
+                Player me = _playManager.me;
 
                 ProperMessage message = new ProperMessage
                 {

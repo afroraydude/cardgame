@@ -1,9 +1,12 @@
 ﻿using System;
+using CardGame.Data;
 using CardGame.Networking;
 using CardGameShared.Data;
 using CardGameShared.Exception;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace CardGame.Management
 {
@@ -12,6 +15,10 @@ namespace CardGame.Management
         [SerializeField] public ActionType[] actionSet = new[] {ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction};
         [SerializeField] public GameManager gameManager;
         private WebsocketBehavior _websocket;
+        [SerializeField] private Image avatar;
+        [SerializeField] private Sprite[] avatars = new Sprite[6];
+        internal SaveFile gameSave = new SaveFile();
+        internal Player me;
 
         private void Awake()
         {
@@ -21,6 +28,16 @@ namespace CardGame.Management
             {
                 throw new CardGameException(ErrorCode.GameManagerNotLoaded);
             }
+
+            gameSave = gameManager.LoadSaveFile();
+            me = new Player
+            {
+                actions = actionSet,
+                lockedIn = false,
+                avatar = gameSave.avatar,
+                name = gameSave.name 
+            };
+            avatar.sprite = avatars[(int) me.avatar];
         }
 
         void Start()
@@ -137,13 +154,6 @@ namespace CardGame.Management
             CalculateEnergy();
             if (this.energyPoints >= 0)
             {
-                Player me = new Player
-                {
-                    actions = actionSet,
-                    lockedIn = false,
-                    avatar = this.gameManager.playerinfo.avatar,
-                    name = this.gameManager.playerinfo.name
-                };
                 ProperMessage play = new ProperMessage
                 {
                     messageType = MessageType.RoundPlay,
@@ -155,7 +165,10 @@ namespace CardGame.Management
 
         public void ProcessRoundPlayed(GameRound gameRound)
         {
-            
+            SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+            BattleSceneManager bsm = GameObject.Find("BattleSceneManager").GetComponent<BattleSceneManager>();
+            bsm.RunBattleScreen(me, gameRound);
+            SceneManager.UnloadSceneAsync("Game");
         }
     }
 }
