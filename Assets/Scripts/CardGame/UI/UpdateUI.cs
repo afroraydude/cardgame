@@ -9,7 +9,6 @@ namespace CardGame.UI
 
     public class UpdateUI : MonoBehaviour
     {
-        [SerializeField] private Text energyPoints;
         [SerializeField] public PlayManager playManager;
 
         [SerializeField] public Slider energyBarSlider;

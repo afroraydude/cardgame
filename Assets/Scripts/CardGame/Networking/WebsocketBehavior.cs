@@ -18,6 +18,11 @@ namespace CardGame.Networking
             _playManager = GetComponent<PlayManager>();
         }
 
+        private void OnEnable()
+        {
+            
+        }
+
         private void Start()
         {
             _dir = _playManager.gameManager.websocketDir;
@@ -29,7 +34,7 @@ namespace CardGame.Networking
         
         void OnApplicationQuit()
         {
-            _ws.Close();
+            //_ws.Close();
         }
 
         public void SendSocketMessage(ProperMessage message)

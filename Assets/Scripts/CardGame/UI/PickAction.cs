@@ -18,7 +18,7 @@ namespace CardGame.UI
 
         private ActionType test;
 
-            private UpdateUI uiUpdater;
+        private UpdateUI uiUpdater;
 
         // Start is called before the first frame update
         void Start()
