@@ -1547,6 +1547,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f02e80c11e36e604ea236df704ae064e, type: 3}
   - {fileID: 21300000, guid: 175fdbcc429c5db499a584122ec74348, type: 3}
   - {fileID: 21300000, guid: 97453a700e482ee48ab5daf1ed1b552a, type: 3}
+  enemyDamageImages:
+  - {fileID: 1885569340}
+  - {fileID: 1708730451}
+  - {fileID: 837815751}
+  - {fileID: 993198042}
+  - {fileID: 2015748437}
+  meDamageImages:
+  - {fileID: 876315272}
+  - {fileID: 1581146871}
+  - {fileID: 1109201753}
+  - {fileID: 762593389}
+  - {fileID: 830469302}
+  enemyDamage: 0
+  meDamage: 0
 --- !u!1 &1885569338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,7 +1689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3490566, g: 0.11657171, b: 0.11657171, a: 1}
+  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

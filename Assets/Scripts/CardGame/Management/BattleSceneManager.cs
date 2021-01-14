@@ -21,7 +21,10 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] private Sprite[] actionImagees = new Sprite[4];
     [SerializeField] private Sprite[] avatars = new Sprite[6];
     [SerializeField] private Image[] enemyDamageImages = new Image[5];
+    [SerializeField] private Image[] meDamageImages = new Image[5];
+    /* Damage dealt by the enemy */
     [SerializeField] private int enemyDamage = 0;
+    /* Damage dealt by me */
     [SerializeField] private int meDamage = 0;
     GameTurn[] turns = new GameTurn[5];
     private void Awake()
@@ -107,15 +110,38 @@ public class BattleSceneManager : MonoBehaviour
     {
         if (_turn < 5)
         {
-            Debug.Log("turn " + _turn);
-            Debug.Log("enemy action " + _enemy.actions[_turn]);
-            Debug.Log("my action" + _me.actions[_turn]);
             enemyAction.sprite = actionImagees[(int) _enemy.actions[_turn]];
             meAction.sprite = actionImagees[(int) _me.actions[_turn]];
-            
-            // TODO: Show damage
+            enemyDamage += CalcDamage(_enemy.actions[_turn], _me.actions[_turn]);
+            meDamage += CalcDamage(_me.actions[_turn], _enemy.actions[_turn]);
+            ShowDamage();
             
             _turn++;
+        }
+    }
+
+    private void ShowDamage()
+    {
+        for (int i = 1; i < 6; i++)
+        {
+            Debug.Log("Iteration: " + i);
+            Debug.Log("Enemy damage: " + enemyDamage);
+            
+            if (i <= enemyDamage)
+            {
+                meDamageImages[i - 1].color = Color.red;
+            }
+        }
+        
+        for (int i = 1; i < 6; i++)
+        {
+            Debug.Log("Iteration: " + i);
+            Debug.Log("Me damage: " + meDamage);
+            
+            if (i <= meDamage)
+            {
+                enemyDamageImages[i - 1].color = Color.red;
+            }
         }
     }
     

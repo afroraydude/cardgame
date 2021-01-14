@@ -12,10 +12,18 @@ namespace CardGame.Networking
         private WebSocket _ws;
         private string _dir;
         private PlayManager _playManager;
-
+        private string _domain;
         private void Awake()
         {
             _playManager = GetComponent<PlayManager>();
+            if (Application.isEditor)
+            {
+                _domain = "localhost:5001";
+            }
+            else
+            {
+                _domain = "scratch.afroraydude.com";
+            }
         }
 
         private void OnEnable()
@@ -26,7 +34,7 @@ namespace CardGame.Networking
         private void Start()
         {
             _dir = _playManager.gameManager.websocketDir;
-            _ws = new WebSocket($"ws://localhost:5001/{_dir}");
+            _ws = new WebSocket($"ws://{_domain}/{_dir}");
             _ws.OnMessage += OnMessage;
             _ws.OnOpen += OnOpen;
             _ws.Connect();
