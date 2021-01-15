@@ -122,26 +122,16 @@ public class BattleSceneManager : MonoBehaviour
 
     private void ShowDamage()
     {
-        for (int i = 1; i < 6; i++)
+        for (int i = 0; i <= enemyDamage; i++)
         {
-            Debug.Log("Iteration: " + i);
-            Debug.Log("Enemy damage: " + enemyDamage);
-            
             if (i <= enemyDamage)
-            {
-                meDamageImages[i - 1].color = Color.red;
-            }
+                meDamageImages[i].color = Color.red;
         }
         
-        for (int i = 1; i < 6; i++)
+        for (int i = 0; i <= meDamage; i++)
         {
-            Debug.Log("Iteration: " + i);
-            Debug.Log("Me damage: " + meDamage);
-            
             if (i <= meDamage)
-            {
-                enemyDamageImages[i - 1].color = Color.red;
-            }
+                enemyDamageImages[i].color = Color.red;
         }
     }
     
