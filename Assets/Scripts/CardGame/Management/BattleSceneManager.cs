@@ -5,6 +5,7 @@ using CardGame.Data;
 using CardGame.Management;
 using CardGameShared.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Avatar = CardGameShared.Data.Avatar;
 
@@ -27,6 +28,8 @@ public class BattleSceneManager : MonoBehaviour
     /* Damage dealt by me */
     [SerializeField] private int meDamage = 0;
     GameTurn[] turns = new GameTurn[5];
+
+    [SerializeField] private Text nextButtonText;
     private void Awake()
     {
         try
@@ -115,9 +118,17 @@ public class BattleSceneManager : MonoBehaviour
             enemyDamage += CalcDamage(_enemy.actions[_turn], _me.actions[_turn]);
             meDamage += CalcDamage(_me.actions[_turn], _enemy.actions[_turn]);
             ShowDamage();
-            
-            _turn++;
         }
+        else
+        {
+            SceneManager.LoadScene("TitleScreen");
+        }
+
+        if (_turn == 4)
+        {
+            nextButtonText.text = "End Game";
+        }
+        _turn++;
     }
 
     private void ShowDamage()
