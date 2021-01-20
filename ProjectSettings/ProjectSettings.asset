@@ -827,10 +827,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 67b463b5-9695-4605-aa38-f29301fbca8e
+  cloudProjectId: 345dd63c-6f93-4d9a-a7e7-32133bc2704d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CardGame
+  projectName: ScratchBattle
   organizationId: afroraydude
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
