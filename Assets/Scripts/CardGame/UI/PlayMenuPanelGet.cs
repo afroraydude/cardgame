@@ -17,10 +17,19 @@ public class PlayMenuPanelGet : MonoBehaviour
     private WebSocket _ws;
     private GameManager _gameManager;
     [SerializeField] private Text idText;
+    private string _domain;
     void Start()
     {
+        if (Application.isEditor)
+        {
+            _domain = "localhost:5001";
+        }
+        else
+        {
+            _domain = "scratch.afroraydude.com";
+        }
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _ws = new WebSocket($"ws://localhost:5001/lobby");
+        _ws = new WebSocket($"ws://{_domain}/lobby");
         _ws.OnMessage += (sender, e) =>
         {
             Debug.Log($"Received Message:\n{e.Data}");

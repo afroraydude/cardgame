@@ -1561,6 +1561,7 @@ MonoBehaviour:
   - {fileID: 830469302}
   enemyDamage: 0
   meDamage: 0
+  nextButtonText: {fileID: 1625556624}
 --- !u!1 &1885569338
 GameObject:
   m_ObjectHideFlags: 0

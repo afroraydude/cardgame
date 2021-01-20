@@ -127,22 +127,24 @@ public class BattleSceneManager : MonoBehaviour
         if (_turn == 4)
         {
             nextButtonText.text = "End Game";
+            Debug.Log($"Enemy damage: {enemyDamage}");
+            Debug.Log($"My damage: {meDamage}");
         }
         _turn++;
     }
 
     private void ShowDamage()
     {
-        for (int i = 0; i <= enemyDamage; i++)
+        for (int i = 1; i <= enemyDamage; i++)
         {
-            if (i <= enemyDamage)
-                meDamageImages[i].color = Color.red;
+            if (enemyDamage > 0)
+                meDamageImages[i - 1].color = Color.red;
         }
         
-        for (int i = 0; i <= meDamage; i++)
+        for (int i = 1; i <= meDamage; i++)
         {
-            if (i <= meDamage)
-                enemyDamageImages[i].color = Color.red;
+            if (meDamage > 0)
+                enemyDamageImages[i - 1].color = Color.red;
         }
     }
     
