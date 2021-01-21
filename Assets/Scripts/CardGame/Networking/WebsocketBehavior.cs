@@ -18,11 +18,11 @@ namespace CardGame.Networking
             _playManager = GetComponent<PlayManager>();
             if (Application.isEditor)
             {
-                _domain = "localhost:5001";
+                _domain = "scratchbattle.afroraydude.com"; // localhost
             }
             else
             {
-                _domain = "scratch.afroraydude.com";
+                _domain = "scratchbattle.afroraydude.com";
             }
         }
 

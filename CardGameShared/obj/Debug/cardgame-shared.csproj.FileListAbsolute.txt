@@ -1,0 +1,6 @@
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\bin\Debug\cardgame_shared.dll
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\bin\Debug\cardgame_shared.pdb
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\obj\Debug\cardgame-shared.csprojAssemblyReference.cache
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\obj\Debug\cardgame-shared.csproj.CoreCompileInputs.cache
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\obj\Debug\cardgame_shared.dll
+C:\Users\afroraydude\Documents\projects\cardgame\CardGameShared\obj\Debug\cardgame_shared.pdb

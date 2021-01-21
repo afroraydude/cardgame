@@ -22,11 +22,11 @@ public class PlayMenuPanelGet : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            _domain = "localhost:5001";
+            _domain = "scratchbattle.afroraydude.com"; // localhost
         }
         else
         {
-            _domain = "scratch.afroraydude.com";
+            _domain = "scratchbattle.afroraydude.com";
         }
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _ws = new WebSocket($"ws://{_domain}/lobby");
