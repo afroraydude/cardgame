@@ -9,4 +9,9 @@ public class playbutton : MonoBehaviour
     {
         SceneManager.LoadScene("PlayMenu");
     }
+
+    public void Rules()
+    {
+        SceneManager.LoadScene("Rules");
+    }
 }

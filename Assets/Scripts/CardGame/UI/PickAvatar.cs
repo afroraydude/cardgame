@@ -2,20 +2,19 @@ using CardGame.Data;
 using System.Collections;
 using System.Collections.Generic;
 using CardGame.Management;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PickAvatar : MonoBehaviour
 {
-    [SerializeField] public GameManager gameManager;
-
     public void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void Game(int choice)
     {
-        SaveFile saveFile = gameManager.LoadSaveFile();
+        SaveFile saveFile = JsonConvert.DeserializeObject<SaveFile>(PlayerPrefs.GetString("save"));
+        Debug.Log(JsonConvert.SerializeObject(saveFile));
         switch (choice)
         {
             case (int)CardGameShared.Data.Avatar.BaldGuy:
@@ -38,8 +37,10 @@ public class PickAvatar : MonoBehaviour
                 break;
         }
 
-        gameManager.WriteSaveToFile(saveFile);
-        
+        string data = JsonConvert.SerializeObject(saveFile);
+        PlayerPrefs.SetString("save", data);
+        PlayerPrefs.Save();
+        Debug.Log(JsonConvert.SerializeObject(saveFile));
         //write functionality to also change scene to "Game", OnClick
         SceneManager.LoadScene("Game");
 

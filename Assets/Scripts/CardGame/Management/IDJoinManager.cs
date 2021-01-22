@@ -30,7 +30,8 @@ public class IDJoinManager : MonoBehaviour
 
     public void OnContinue()
     {
-        gameManager.websocketDir = id;
+        PlayerPrefs.SetString("game_id", id);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("Enter Username");
     }
 }

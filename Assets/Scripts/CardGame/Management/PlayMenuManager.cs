@@ -8,11 +8,9 @@ using UnityEngine.SceneManagement;
 public class PlayMenuManager : MonoBehaviour
 {
     public GameObject Panel;
-    [SerializeField] public GameManager gameManager;
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Start is called before the first frame update
@@ -31,7 +29,6 @@ public class PlayMenuManager : MonoBehaviour
     {
         if (Panel != null)
         {
-            gameManager.websocketDir = "lobby";
             Panel.SetActive(true);
         }
     }

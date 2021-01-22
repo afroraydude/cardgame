@@ -15,7 +15,6 @@ public class PlayMenuPanelGet : MonoBehaviour
     private string id = "Loading ID";
     [SerializeField] private Button continueButton;
     private WebSocket _ws;
-    private GameManager _gameManager;
     [SerializeField] private Text idText;
     private string _domain;
     void Start()
@@ -28,7 +27,6 @@ public class PlayMenuPanelGet : MonoBehaviour
         {
             _domain = "scratchbattle.afroraydude.com";
         }
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _ws = new WebSocket($"ws://{_domain}/lobby");
         _ws.OnMessage += (sender, e) =>
         {
@@ -38,7 +36,8 @@ public class PlayMenuPanelGet : MonoBehaviour
             {
                 Debug.Log(m.messageData);
                 id = m.messageData;
-                _gameManager.websocketDir = id;
+                PlayerPrefs.SetString("game_id", id);
+                PlayerPrefs.Save();
             }
         };
         _ws.OnOpen += OnOpen;

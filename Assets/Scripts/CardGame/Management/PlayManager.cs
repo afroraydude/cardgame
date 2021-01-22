@@ -13,7 +13,6 @@ namespace CardGame.Management
     public class PlayManager : MonoBehaviour
     {
         [SerializeField] public ActionType[] actionSet = new[] {ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction};
-        [SerializeField] public GameManager gameManager;
         private WebsocketBehavior _websocket;
         [SerializeField] private Image avatar;
         [SerializeField] private Sprite[] avatars = new Sprite[6];
@@ -22,14 +21,9 @@ namespace CardGame.Management
 
         private void Awake()
         {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             _websocket = GetComponent<WebsocketBehavior>();
-            if (!gameManager)
-            {
-                throw new CardGameException(ErrorCode.GameManagerNotLoaded);
-            }
 
-            gameSave = gameManager.LoadSaveFile();
+            gameSave = JsonConvert.DeserializeObject<SaveFile>(PlayerPrefs.GetString("save"));
             me = new Player
             {
                 actions = actionSet,

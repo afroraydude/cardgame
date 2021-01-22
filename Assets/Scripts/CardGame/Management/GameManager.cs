@@ -87,5 +87,10 @@ namespace CardGame.Management
             Debug.Log("OnSceneLoaded: " + scene.name);
             Debug.Log(mode);
         }
+
+        public void BackToTitle()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

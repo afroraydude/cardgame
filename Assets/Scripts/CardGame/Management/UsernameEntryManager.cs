@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using CardGame.Data;
 using CardGame.Management;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UsernameEntryManager : MonoBehaviour
 {
-    [SerializeField] public GameManager gameManager;
 
     [SerializeField] private InputField nameChoice;
     // Start is called before the first frame update
     private SaveFile gameSave;
     void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameSave = gameManager.LoadSaveFile();
+        gameSave = JsonConvert.DeserializeObject<SaveFile>(PlayerPrefs.GetString("save"));
         nameChoice.text = gameSave.name;
     }
 
@@ -33,7 +32,9 @@ public class UsernameEntryManager : MonoBehaviour
 
     public void OnContinue()
     {
-        gameManager.WriteSaveToFile(gameSave);
+        string data = JsonConvert.SerializeObject(gameSave);
+        PlayerPrefs.SetString("save", data);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("CharacterSelect");
     }
 }
