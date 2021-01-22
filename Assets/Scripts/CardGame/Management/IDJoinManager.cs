@@ -25,7 +25,7 @@ public class IDJoinManager : MonoBehaviour
     
     public void NameEntry(string name)
     {
-        id = name;
+        id = name.ToUpper();
     }
 
     public void OnContinue()

@@ -32,12 +32,15 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] private Text nextButtonText;
     
     [SerializeField] private GameRoundContainer _gameRoundContainer;
-    private void Awake()
+    private void Start()
     {
-        try
+        _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
+
+        if (_gameRoundContainer)
         {
-            _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
             RunBattleScreen(_gameRoundContainer.me, _gameRoundContainer.gameRound);
+        }
+        else {
             Debug.Log("Is real game...waiting on play manager to send data.");
             
             /*
@@ -47,9 +50,6 @@ public class BattleSceneManager : MonoBehaviour
             Player me = JsonConvert.DeserializeObject<Player>(mePP);
             RunBattleScreen(me, gameRound);
             */
-        }
-        catch
-        {
             Debug.Log("Is not real game...loading simulation");
             Player me = new Player
             {
@@ -79,12 +79,6 @@ public class BattleSceneManager : MonoBehaviour
             };
             RunBattleScreen(me, gameRound);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

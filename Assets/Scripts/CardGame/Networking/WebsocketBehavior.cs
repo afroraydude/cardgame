@@ -33,7 +33,7 @@ namespace CardGame.Networking
 
         private void Start()
         {
-            _dir = PlayerPrefs.GetString("game_id", "DebugGame");
+            _dir = PlayerPrefs.GetString("game_id", "A");
             _ws = new WebSocket($"ws://{_domain}/{_dir}");
             _ws.OnMessage += OnMessage;
             _ws.OnOpen += OnOpen;
