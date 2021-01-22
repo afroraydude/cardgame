@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 public class PlayMenuManager : MonoBehaviour
 {
     public GameObject Panel;
+    
 
-    private void Awake()
+        private void Awake()
     {
     }
 
@@ -32,6 +33,8 @@ public class PlayMenuManager : MonoBehaviour
             Panel.SetActive(true);
         }
     }
+
+    
     
     public void JoinButton()
     {

@@ -156,7 +156,7 @@ PlayerSettings:
     iPhone: com.afroraydude.unity.scratchbattle
   buildNumber:
     Standalone: 0
-    iPhone: 3
+    iPhone: 4
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1

@@ -9,7 +9,7 @@ namespace CardGame.Networking
 {
     public class WebsocketBehavior : MonoBehaviour
     {
-        private WebSocket _ws;
+        public WebSocket _ws;
         private string _dir;
         private PlayManager _playManager;
         private string _domain;
@@ -72,16 +72,19 @@ namespace CardGame.Networking
                 {
                     _playManager.me = JsonConvert.DeserializeObject<Player>(message.messageData);
                 }
+
+                if (message.messageType == MessageType.RoundPlayAccept)
+                {
+                    _playManager.WaitOnOpponent();
+                }
+                if (message.messageType == MessageType.RoundPlayDeny)
+                {
+                    _playManager.ResetActions();
+                }
             }
         }
         private void OnOpen(object sender, EventArgs e)
         {
-            if (_dir == "lobby")
-            {
-                
-            }
-            else
-            {
                 Player me = _playManager.me;
 
                 ProperMessage message = new ProperMessage
@@ -90,7 +93,6 @@ namespace CardGame.Networking
                     messageData = JsonConvert.SerializeObject(me)
                 };
                 SendSocketMessage(message);
-            }
         }
     }
 }

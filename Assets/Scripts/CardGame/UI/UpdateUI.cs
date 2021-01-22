@@ -28,6 +28,9 @@ namespace CardGame.UI
 
                 switch (actionType)
                 {
+                    case ActionType.NullAction:
+                        actions[i].image.sprite = actionImages[4];
+                        break;
                     case ActionType.HeavySwordH:
                         actions[i].image.sprite = actionImages[0];
                         break;

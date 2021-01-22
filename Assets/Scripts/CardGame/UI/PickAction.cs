@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CardGame.Management;
 using CardGameShared.Data;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -61,9 +62,15 @@ namespace CardGame.UI
                 {
                     TogglePanel(spot);
                 }
+                else
+                {
+                    
+                }
             }
             playManager.CalculateEnergy();
             uiUpdater.UpdateTextElements();
         }
+        
+        
     }
 }

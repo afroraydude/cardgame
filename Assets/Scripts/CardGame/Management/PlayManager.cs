@@ -1,12 +1,15 @@
 ﻿using System;
 using CardGame.Data;
 using CardGame.Networking;
+using CardGame.UI;
 using CardGameShared.Data;
 using CardGameShared.Exception;
 using Newtonsoft.Json;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using MessageType = CardGameShared.Data.MessageType;
 
 namespace CardGame.Management
 {
@@ -18,10 +21,14 @@ namespace CardGame.Management
         [SerializeField] private Sprite[] avatars = new Sprite[6];
         internal SaveFile gameSave = new SaveFile();
         internal Player me;
+        [SerializeField] private UpdateUI uiUpdater;
+        [SerializeField] private Button battleButton;
+        [SerializeField] private GameRoundContainer _gameRoundContainer;
 
         private void Awake()
         {
             _websocket = GetComponent<WebsocketBehavior>();
+            _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
 
             gameSave = JsonConvert.DeserializeObject<SaveFile>(PlayerPrefs.GetString("save"));
             me = new Player
@@ -32,6 +39,10 @@ namespace CardGame.Management
                 name = gameSave.name 
             };
             avatar.sprite = avatars[(int) me.avatar];
+
+            int test = (int) MessageType.RoundPlayAccept;
+            Debug.Log(test);
+
         }
 
         void Start()
@@ -155,14 +166,58 @@ namespace CardGame.Management
                 };
                 _websocket.SendSocketMessage(play);
             }
+            WaitOnOpponent();
         }
 
         public void ProcessRoundPlayed(GameRound gameRound)
         {
-            SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+            Debug.Log("process round");
+            
+            /*
+            SceneManager.LoadScene(4, LoadSceneMode.Additive);
+            Debug.Log("process round2");
             BattleSceneManager bsm = GameObject.Find("BattleSceneManager").GetComponent<BattleSceneManager>();
+            Debug.Log("process round3");
             bsm.RunBattleScreen(me, gameRound);
+            Debug.Log("process round4");
             SceneManager.UnloadSceneAsync("Game");
+            */
+            
+            /*
+            string gameRoundPP = JsonConvert.SerializeObject(gameRound);
+            Debug.Log("process round2");
+            string mePP = JsonConvert.SerializeObject(me);
+            Debug.Log("process round3");
+            PlayerPrefs.SetString("lg", gameRoundPP);
+            Debug.Log("process round4");
+            PlayerPrefs.SetString("lastme", mePP);
+            Debug.Log("process round5");
+            PlayerPrefs.Save();
+            Debug.Log("process round6");
+            SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+            Debug.Log("process round7");
+            */
+
+            _gameRoundContainer.gameRound = gameRound;
+            _gameRoundContainer.me = me;
+            Debug.Log("process round2");
+            _websocket._ws.Close();
+            Debug.Log("process round3");
+            SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+            Debug.Log("process round3");
+        }
+
+        public void WaitOnOpponent()
+        {
+            
+        }
+
+        public void ResetActions()
+        {
+            
+            battleButton.enabled = true;
+            actionSet = new[] {ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction,ActionType.NullAction};
+            uiUpdater.UpdateTextElements();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CardGame.Data;
 using CardGame.Management;
 using CardGameShared.Data;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +12,6 @@ using Avatar = CardGameShared.Data.Avatar;
 
 public class BattleSceneManager : MonoBehaviour
 {
-    private PlayManager _playManager;
     private Player _enemy;
     private Player _me;
     private int _turn = -1;
@@ -30,12 +30,23 @@ public class BattleSceneManager : MonoBehaviour
     GameTurn[] turns = new GameTurn[5];
 
     [SerializeField] private Text nextButtonText;
+    
+    [SerializeField] private GameRoundContainer _gameRoundContainer;
     private void Awake()
     {
         try
         {
-            _playManager = GameObject.Find("PlayManager").GetComponent<PlayManager>();
+            _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
+            RunBattleScreen(_gameRoundContainer.me, _gameRoundContainer.gameRound);
             Debug.Log("Is real game...waiting on play manager to send data.");
+            
+            /*
+            string gameRoundPP = PlayerPrefs.GetString("lastgame");
+            string mePP = PlayerPrefs.GetString("lastme");
+            GameRound gameRound = JsonConvert.DeserializeObject<GameRound>(gameRoundPP);
+            Player me = JsonConvert.DeserializeObject<Player>(mePP);
+            RunBattleScreen(me, gameRound);
+            */
         }
         catch
         {
