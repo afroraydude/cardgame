@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4823017440418442722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4823017440418442723}
+  - component: {fileID: 4823017440418442724}
+  m_Layer: 0
+  m_Name: BattleScreenManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4823017440418442723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823017440418442722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.20482, y: 611.7937, z: -476.9422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4823017440418442724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823017440418442722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33202c21adb894d43a03e3616793049a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyImage: {fileID: 0}
+  meImage: {fileID: 0}
+  enemyAction: {fileID: 0}
+  meAction: {fileID: 0}
+  actionImagees:
+  - {fileID: 21300000, guid: 6f4eb59c7d1405242ba6fb9539af9b37, type: 3}
+  - {fileID: 21300000, guid: 5d7c525055fd7724d842c2a612e47d84, type: 3}
+  - {fileID: 21300000, guid: 6a63ea40ec9042049ba09539d3d4de04, type: 3}
+  - {fileID: 21300000, guid: e551f50da927edf44a214a5ca8404a09, type: 3}
+  avatars:
+  - {fileID: 21300000, guid: 39fd629ea0d87a449b0a3d58012d52cb, type: 3}
+  - {fileID: 21300000, guid: 3a5ea37d5ecbff04385e6c695a975e55, type: 3}
+  - {fileID: 21300000, guid: c5c20cc629c4eae4aac6a245d9df4e74, type: 3}
+  - {fileID: 21300000, guid: f02e80c11e36e604ea236df704ae064e, type: 3}
+  - {fileID: 21300000, guid: 175fdbcc429c5db499a584122ec74348, type: 3}
+  - {fileID: 21300000, guid: 97453a700e482ee48ab5daf1ed1b552a, type: 3}
+  enemyDamageImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  meDamageImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyDamage: 0
+  meDamage: 0
+  nextButtonText: {fileID: 0}
+  _gameRoundContainer: {fileID: 0}

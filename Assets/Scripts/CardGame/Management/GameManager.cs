@@ -84,8 +84,7 @@ namespace CardGame.Management
         
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Debug.Log("OnSceneLoaded: " + scene.name);
-            Debug.Log(mode);
+            Debug.Log("OnSceneLoaded: " + scene.name + " " + mode);
         }
 
         public void BackToTitle()

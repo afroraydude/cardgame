@@ -29,19 +29,19 @@ namespace CardGame.UI
                 switch (actionType)
                 {
                     case ActionType.NullAction:
-                        actions[i].image.sprite = actionImages[4];
+                        actions[i].image.sprite = actionImages[(int) ActionType.NullAction];
                         break;
                     case ActionType.HeavySwordH:
-                        actions[i].image.sprite = actionImages[0];
+                        actions[i].image.sprite = actionImages[(int) ActionType.HeavySwordH];
                         break;
                     case ActionType.Shield:
-                        actions[i].image.sprite = actionImages[1];
+                        actions[i].image.sprite = actionImages[(int) ActionType.Shield];
                         break;
                     case ActionType.Sword:
-                        actions[i].image.sprite = actionImages[2];
+                        actions[i].image.sprite = actionImages[(int) ActionType.Sword];
                         break;
                     case ActionType.HeavySwordS:
-                        actions[i].image.sprite = actionImages[3];
+                        actions[i].image.sprite = actionImages[(int) ActionType.HeavySwordS];
                         break;
                 }
 

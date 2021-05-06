@@ -10,8 +10,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Avatar = CardGameShared.Data.Avatar;
 
+
 public class BattleSceneManager : MonoBehaviour
 {
+
+	#region variables definition
     private Player _enemy;
     private Player _me;
     private int _turn = -1;
@@ -32,53 +35,17 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] private Text nextButtonText;
     
     [SerializeField] private GameRoundContainer _gameRoundContainer;
+	#endregion 
+
+    private void OnEnable()
+    {
+        
+    }
+
     private void Start()
     {
         _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
-
-        if (_gameRoundContainer)
-        {
-            RunBattleScreen(_gameRoundContainer.me, _gameRoundContainer.gameRound);
-        }
-        else {
-            Debug.Log("Is real game...waiting on play manager to send data.");
-            
-            /*
-            string gameRoundPP = PlayerPrefs.GetString("lastgame");
-            string mePP = PlayerPrefs.GetString("lastme");
-            GameRound gameRound = JsonConvert.DeserializeObject<GameRound>(gameRoundPP);
-            Player me = JsonConvert.DeserializeObject<Player>(mePP);
-            RunBattleScreen(me, gameRound);
-            */
-            Debug.Log("Is not real game...loading simulation");
-            Player me = new Player
-            {
-                actions = new[]
-                {
-                    ActionType.Shield, ActionType.Shield, ActionType.Sword, ActionType.HeavySwordH,
-                    ActionType.HeavySwordS
-                },
-                name = "Me",
-                avatar = Avatar.TVGuy,
-                lockedIn = true,
-                sessionId = "testuser1"
-            };
-            GameRound gameRound = new GameRound
-            {
-                player1 = me,
-                player1Damnage = 4,
-                player2 = new Player
-                {
-                    actions = new [] {ActionType.HeavySwordH, ActionType.HeavySwordS, ActionType.Shield, ActionType.Shield, ActionType.Shield},
-                    name = "Enemy",
-                    avatar = Avatar.BlueGuy,
-                    lockedIn = true,
-                    sessionId = "testuser2"
-                },
-                player2Damage = 2
-            };
-            RunBattleScreen(me, gameRound);
-        }
+        RunBattleScreen(_gameRoundContainer.me, _gameRoundContainer.gameRound);
     }
 
     // Update is called once per frame
@@ -88,16 +55,11 @@ public class BattleSceneManager : MonoBehaviour
 
     internal void RunBattleScreen(Player rcvdMePlayer, GameRound gameRound)
     {
-        if (gameRound.player1.sessionId == rcvdMePlayer.sessionId)
-        {
-            _enemy = gameRound.player2;
-            _me = gameRound.player1;
-        }
-        else if (gameRound.player2.sessionId == rcvdMePlayer.sessionId)
-        {
-            _enemy = gameRound.player2;
-            _me = gameRound.player1;
-        }
+        string test = JsonConvert.SerializeObject(gameRound);
+        _enemy = gameRound.player2;
+        _me = gameRound.player1;
+
+
         for (int i = 0; i < 5; i++)
         {
             turns[i] = new GameTurn
@@ -118,10 +80,37 @@ public class BattleSceneManager : MonoBehaviour
     {
         if (_turn < 5)
         {
-            enemyAction.sprite = actionImagees[(int) _enemy.actions[_turn]];
-            meAction.sprite = actionImagees[(int) _me.actions[_turn]];
-            enemyDamage += CalcDamage(_enemy.actions[_turn], _me.actions[_turn]);
-            meDamage += CalcDamage(_me.actions[_turn], _enemy.actions[_turn]);
+            if (_enemy.actions == null)
+            {
+                Debug.Log("err1");
+            }
+        
+            if (_me.actions == null)
+            {
+                Debug.Log("er2");
+            }
+
+            Debug.Log("turn " + _turn);
+            if (_enemy.actions != null)
+            {
+                Debug.Log("eat " + (int) _enemy.actions[_turn]);
+
+                enemyAction.sprite = actionImagees[(int) _enemy.actions[_turn]];
+                if (_me.actions != null)
+                {
+                    meAction.sprite = actionImagees[(int) _me.actions[_turn]];
+                    enemyDamage += CalcDamage(_enemy.actions[_turn], _me.actions[_turn]);
+                    meDamage += CalcDamage(_me.actions[_turn], _enemy.actions[_turn]);
+                }
+                else
+                {
+                    Debug.Log("me actions is null");
+                }
+            }
+            else
+            {
+                Debug.Log("enemy actions is null");
+            }
             ShowDamage();
         }
         else

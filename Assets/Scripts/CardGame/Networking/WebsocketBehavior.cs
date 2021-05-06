@@ -13,17 +13,20 @@ namespace CardGame.Networking
         private string _dir;
         private PlayManager _playManager;
         private string _domain;
+        private bool isOnline = true;
         private void Awake()
         {
             _playManager = GetComponent<PlayManager>();
             if (Application.isEditor)
             {
-                _domain = "scratchbattle.afroraydude.com"; // localhost
+                //_domain = "scratchbattle.afroraydude.com"; // localhost
             }
             else
             {
-                _domain = "scratchbattle.afroraydude.com";
+                //_domain = "scratchbattle.afroraydude.com";
             }
+
+            _domain = "192.168.100.9";
         }
 
         private void OnEnable()
@@ -34,10 +37,17 @@ namespace CardGame.Networking
         private void Start()
         {
             _dir = PlayerPrefs.GetString("game_id", "A");
-            _ws = new WebSocket($"ws://{_domain}/{_dir}");
-            _ws.OnMessage += OnMessage;
-            _ws.OnOpen += OnOpen;
-            _ws.Connect();
+            if (_dir != "singleplayer")
+            {
+                _ws = new WebSocket($"ws://{_domain}/{_dir}");
+                _ws.OnMessage += OnMessage;
+                _ws.OnOpen += OnOpen;
+                _ws.Connect();
+            }
+            else
+            {
+                isOnline = false;
+            }
         }
         
         void OnApplicationQuit()
@@ -48,7 +58,15 @@ namespace CardGame.Networking
         public void SendSocketMessage(ProperMessage message)
         {
             string msg = JsonConvert.SerializeObject(message);
-            _ws.Send(msg);
+            if (isOnline) _ws.Send(msg);
+            if (!isOnline)
+            {
+                if (message.messageType == MessageType.RoundPlay)
+                {
+                    Player self = JsonConvert.DeserializeObject<Player>(message.messageData);
+                    PlaySinglePlayerRound(self);
+                }
+            }
         }
 
         private ProperMessage LoadMessage(string rawMessage)
@@ -65,12 +83,14 @@ namespace CardGame.Networking
                 ProperMessage message = LoadMessage(e.Data);
                 if (message.messageType == MessageType.RoundResult)
                 {
+                    Debug.Log($"Game Round result received: {message.messageData}");
                     _playManager.ProcessRoundPlayed(JsonConvert.DeserializeObject<GameRound>(message.messageData));
                 }
 
                 if (message.messageType == MessageType.JoinAccept)
                 {
                     _playManager.me = JsonConvert.DeserializeObject<Player>(message.messageData);
+                    Debug.Log($"Got new version of me: {message.messageData}");
                 }
 
                 if (message.messageType == MessageType.RoundPlayAccept)
@@ -93,6 +113,12 @@ namespace CardGame.Networking
                     messageData = JsonConvert.SerializeObject(me)
                 };
                 SendSocketMessage(message);
+        }
+
+        void PlaySinglePlayerRound(Player self)
+        {
+            var play = _playManager.GenerateSinglePlayerPlay(self);
+            _playManager.ProcessRoundPlayed(play);
         }
     }
 }
