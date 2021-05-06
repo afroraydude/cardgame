@@ -18,25 +18,18 @@ namespace CardGame.Networking
         {
             _playManager = GetComponent<PlayManager>();
             if (Application.isEditor)
-            {
-                //_domain = "scratchbattle.afroraydude.com"; // localhost
+            { 
+                _domain = "192.168.100.9"; // localhost
             }
             else
             {
-                //_domain = "scratchbattle.afroraydude.com";
+                _domain = "scratchbattle.afroraydude.com";
             }
 
-            _domain = "192.168.100.9";
-        }
-
-        private void OnEnable()
-        {
+            //_domain = "192.168.100.9";
             
-        }
-
-        private void Start()
-        {
-            _dir = PlayerPrefs.GetString("game_id", "A");
+            _dir = _playManager._manager.websocketDir;
+            Debug.Log(_dir);
             if (_dir != "singleplayer")
             {
                 _ws = new WebSocket($"ws://{_domain}/{_dir}");
@@ -48,6 +41,16 @@ namespace CardGame.Networking
             {
                 isOnline = false;
             }
+        }
+
+        private void OnEnable()
+        {
+            
+        }
+
+        private void Start()
+        {
+            
         }
         
         void OnApplicationQuit()

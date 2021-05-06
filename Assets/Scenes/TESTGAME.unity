@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &323624087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c8bf411ec54094a6e8fa1ccae09f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  websocketDir: DebugGame
+  websocketDir: singleplayer
 --- !u!4 &323624088
 Transform:
   m_ObjectHideFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   _gameRoundContainer: {fileID: 0}
   BattleScene: {fileID: 523108274}
   GameScene: {fileID: 986161163}
+  SinglePlayer: 1
   energyPoints: 7
 --- !u!4 &484739570
 Transform:

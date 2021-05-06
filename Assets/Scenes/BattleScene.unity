@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 202237598}
   - component: {fileID: 202237597}
-  - component: {fileID: 202237596}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -141,14 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &202237596
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202237595}
-  m_Enabled: 1
 --- !u!20 &202237597
 Camera:
   m_ObjectHideFlags: 0
@@ -735,6 +726,30 @@ PrefabInstance:
       propertyPath: nextButtonText
       value: 
       objectReference: {fileID: 1625556624}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f10c6e0f2a79afe41ac5d94ba989738c, type: 3}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f4eb59c7d1405242ba6fb9539af9b37, type: 3}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: e551f50da927edf44a214a5ca8404a09, type: 3}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d7c525055fd7724d842c2a612e47d84, type: 3}
+    - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
+      propertyPath: actionImagees.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a63ea40ec9042049ba09539d3d4de04, type: 3}
     - target: {fileID: 4823017440418442724, guid: 26a2f4cf7c7fd4bed903c071798a7137, type: 3}
       propertyPath: meDamageImages.Array.data[0]
       value: 

@@ -28,12 +28,13 @@ namespace CardGame.Management
         [SerializeField] private GameRoundContainer _gameRoundContainer;
         [SerializeField] private GameObject BattleScene;
         [SerializeField] private GameObject GameScene;
-
+        [SerializeField] private bool SinglePlayer = false;
+        public GameManager _manager;
         private void Awake()
         {
             _websocket = GetComponent<WebsocketBehavior>();
             _gameRoundContainer = GameObject.Find("GameRound").GetComponent<GameRoundContainer>();
-
+            _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameSave = JsonConvert.DeserializeObject<SaveFile>(PlayerPrefs.GetString("save"));
             me = new Player
             {
@@ -47,6 +48,15 @@ namespace CardGame.Management
 
         void Start()
         {
+            if (SinglePlayer)
+            {
+                me.actions = new[]
+                {
+                    ActionType.HeavySwordH, ActionType.HeavySwordS, ActionType.Shield, ActionType.Shield,
+                    ActionType.Shield
+                };
+                PlayRound();
+            }
         }
 
         public int energyPoints = 7;
@@ -172,39 +182,9 @@ namespace CardGame.Management
         public void ProcessRoundPlayed(GameRound gameRound)
         {
             Debug.Log("process round");
-            
-            /*
-            SceneManager.LoadScene(4, LoadSceneMode.Additive);
-            Debug.Log("process round2");
-            BattleSceneManager bsm = GameObject.Find("BattleSceneManager").GetComponent<BattleSceneManager>();
-            Debug.Log("process round3");
-            bsm.RunBattleScreen(me, gameRound);
-            Debug.Log("process round4");
-            SceneManager.UnloadSceneAsync("Game");
-            */
-            
-            /*
-            string gameRoundPP = JsonConvert.SerializeObject(gameRound);
-            Debug.Log("process round2");
-            string mePP = JsonConvert.SerializeObject(me);
-            Debug.Log("process round3");
-            PlayerPrefs.SetString("lg", gameRoundPP);
-            Debug.Log("process round4");
-            PlayerPrefs.SetString("lastme", mePP);
-            Debug.Log("process round5");
-            PlayerPrefs.Save();
-            Debug.Log("process round6");
-            SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
-            Debug.Log("process round7");
-            */
-
             _gameRoundContainer.gameRound = gameRound;
             _gameRoundContainer.me = me;
-            Debug.Log("process round2");
-            GameScene.SetActive(false);
-            Debug.Log("process round3");
-            BattleScene.SetActive(true);
-            Debug.Log("process round4");
+            SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
         }
 
         public void WaitOnOpponent()
@@ -237,6 +217,7 @@ namespace CardGame.Management
             Player enemy = new Player();
             enemy.name = "Bot";
             enemy.avatar = (Avatar) x.Next(5);
+            enemy.actions = new ActionType[5];
             while (!playIsValid)
             {
                 for (int i = 0; i < 5; i++)

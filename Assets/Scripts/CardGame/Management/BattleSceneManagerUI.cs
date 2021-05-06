@@ -11,13 +11,13 @@ using UnityEngine.UI;
 using Avatar = CardGameShared.Data.Avatar;
 
 
-public class BattleSceneManager : MonoBehaviour
+public class BattleSceneManagerUI : MonoBehaviour
 {
 
 	#region variables definition
     private Player _enemy;
     private Player _me;
-    public int _turn = -1;
+    private int _turn = -1;
     [SerializeField] private Image enemyImage;
     [SerializeField] private Image meImage;
     [SerializeField] private Image enemyAction;
@@ -94,7 +94,7 @@ public class BattleSceneManager : MonoBehaviour
             if (_enemy.actions != null)
             {
                 Debug.Log("eat " + (int) _enemy.actions[_turn]);
-                //Debug.Log();
+
                 enemyAction.sprite = actionImagees[(int) _enemy.actions[_turn]];
                 if (_me.actions != null)
                 {
