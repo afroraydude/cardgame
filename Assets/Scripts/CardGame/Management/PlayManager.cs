@@ -48,6 +48,7 @@ namespace CardGame.Management
 
         void Start()
         {
+            /*
             if (SinglePlayer)
             {
                 me.actions = new[]
@@ -57,6 +58,7 @@ namespace CardGame.Management
                 };
                 PlayRound();
             }
+            */
         }
 
         public int energyPoints = 7;

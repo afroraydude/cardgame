@@ -91,5 +91,11 @@ namespace CardGame.Management
         {
             SceneManager.LoadScene("MainMenu");
         }
+
+        public void GoSinglePlayer()
+        {
+            websocketDir = "singleplayer";
+            SceneManager.LoadScene("Game");
+        }
     }
 }
